@@ -1,33 +1,21 @@
 <template>
   <el-container style="height: 100vh">
-    <div
-      class="mask"
-      v-show="!isCollapse && !contentFullScreen"
-      @click="hideMenu"
-    ></div>
-    <el-aside
-      :width="isCollapse ? '60px' : '250px'"
-      :class="isCollapse ? 'hide-aside' : 'show-side'"
-      v-show="!contentFullScreen"
-    >
-      <Logo v-if="showLogo" />
-      <Menu />
-    </el-aside>
-    <el-container>
-      <el-header v-show="!contentFullScreen">
-        <Header />
-      </el-header>
-      <Tabs v-show="showTabs" />
+    <div class="mask" v-show="!isCollapse && !contentFullScreen" @click="hideMenu"></div>
+
+    <el-header v-show="!contentFullScreen">
+      <Header />
+    </el-header>
+    <el-container style="flex: 1;overflow: auto;">
+      <el-aside :width="isCollapse ? '0px' : '220px'" :class="isCollapse ? 'hide-aside' : 'show-side'"
+        v-show="!contentFullScreen">
+        <!-- <Logo v-if="showLogo" /> -->
+        <Menu />
+      </el-aside>
+      <!-- <Tabs v-show="showTabs" /> -->
       <el-main>
         <router-view v-slot="{ Component, route }">
-          <transition
-            :name="route.meta.transition || 'fade-transform'"
-            mode="out-in"
-          >
-            <keep-alive
-              v-if="keepAliveComponentsName"
-              :include="keepAliveComponentsName"
-            >
+          <transition :name="route.meta.transition || 'fade-transform'" mode="out-in">
+            <keep-alive v-if="keepAliveComponentsName" :include="keepAliveComponentsName">
               <component :is="Component" :key="route.fullPath" />
             </keep-alive>
             <component v-else :is="Component" :key="route.fullPath" />
@@ -98,28 +86,34 @@ export default defineComponent({
   padding-left: 0;
   padding-right: 0;
 }
+
 .el-aside {
   display: flex;
   flex-direction: column;
   transition: 0.2s;
   overflow-x: hidden;
+
   transition: 0.3s;
+
   &::-webkit-scrollbar {
     width: 0 !important;
   }
 }
+
 .el-main {
   background-color: var(--system-container-background);
-  height: 100%;
+  // height: 100%;
   padding: 0;
   overflow-x: hidden;
 }
+
 :deep(.el-main-box) {
   width: 100%;
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
 }
+
 @media screen and (max-width: 1000px) {
   .el-aside {
     position: fixed;
@@ -127,10 +121,12 @@ export default defineComponent({
     left: 0;
     height: 100vh;
     z-index: 1000;
+
     &.hide-aside {
       left: -250px;
     }
   }
+
   .mask {
     position: fixed;
     top: 0;

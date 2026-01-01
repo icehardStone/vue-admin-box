@@ -17,10 +17,12 @@
       </el-table-column>
       <slot></slot>
     </el-table>
-    <el-pagination
+    <div      
+      class="system-page-table-box">
+      <el-pagination
       v-if="showPage"
-      v-model:current-page="page.index"
       class="system-page-table"
+      v-model:current-page="page.index"
       background
       :layout="pageLayout"
       :total="page.total"
@@ -30,6 +32,7 @@
       @size-change="handleSizeChange"
     >
     </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -98,13 +101,22 @@ export default defineComponent({
     justify-content: center;
     align-items: flex-start;
     height: 100%;
+    background-color: var(--system-container-main-background);
     .system-table {
       flex: 1;
       height: 100%;
     }
     
-    .system-page-table {
+    .system-page-table-box {
       margin-top: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      width: 100%;
+      justify-content: right;
+
+      .system-page-table{
+        margin-right: 15px;
+      }
     }
   }
 </style>

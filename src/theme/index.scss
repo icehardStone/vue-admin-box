@@ -15,10 +15,10 @@
   --system-menu-hover-background: #203448;
 
   // header区域
-  --system-header-background: #fff;
-  --system-header-text-color: #303133;
+  --system-header-background: #181f31;
+  --system-header-text-color: #fff;
   --system-header-breadcrumb-text-color: #606266;
-  --system-header-item-hover-color: rgba(0,0,0,.06);
+  --system-header-item-hover-color:rgba(220, 209, 209, 0.3);
   --system-header-border-color: #d8dce5;
   --system-header-tab-background: #fff;
 
@@ -47,5 +47,7 @@ body #nprogress .spinner-icon {
   border-top-color: var(--system-primary-color);
   border-left-color: var(--system-primary-color);
 }
-
+.m-0{
+  margin: 0;
+}
 @import './modules/dark.scss';

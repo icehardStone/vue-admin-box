@@ -64,6 +64,7 @@ export default defineComponent({
   .el-scrollbar {
     background-color: var(--system-menu-background);
     flex: 1;
+    overflow: auto;
   }
   .layout-menu {
     width: 100%;

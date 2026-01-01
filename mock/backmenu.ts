@@ -33,6 +33,30 @@ export default [
               ]
             },
             {
+              "path": "/old",
+              "redirect": "/old/record",
+              "meta": {
+                "title": "老人管理",
+                "icon": "sfont system-document"
+              },
+              "children": [
+                {
+                  "path": "record",
+                  "meta": {
+                    "title": "老人档案"
+                  },
+                  "component": "old_record"
+                },
+                {
+                  "path": "function",
+                  "meta": {
+                    "title": "功能说明"
+                  },
+                  "component": "document_function"
+                }
+              ]
+            },
+            {
               "path": "/document",
               "redirect": "/document/intro",
               "meta": {

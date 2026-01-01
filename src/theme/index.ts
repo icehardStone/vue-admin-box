@@ -53,8 +53,10 @@ export const style: Style = {
       background: '#263445'
     },
     header: {
-      background: '#fff',
-      textColor: '#303133',
+      // background: '#fff',
+      background: '#181f31',
+      // textColor: '#303133',
+      textColor: '#fff',
       itemHoverColor: 'rgba(0,0,0,.06)',
       breadcrumbTextColor: '#606266',
       borderColor: '#d8dce5',

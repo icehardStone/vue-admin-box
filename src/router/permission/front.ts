@@ -18,9 +18,12 @@ import Print from '../modules/print'
 import Community from '../modules/community'
 import Tab from '../modules/tab'
 
+// 老人列表
+import Old from '../modules/old'
 /** 登录后需要动态加入的本地路由 */
 const FrontRoutes: Route[] = [
   ...Dashboard,
+  ...Old,
   ...Document,
   ...Component,
   ...Pages,
@@ -31,6 +34,7 @@ const FrontRoutes: Route[] = [
   ...Print,
   ...Community,
   ...Tab,
+  ...Old
 ]
 
 export default FrontRoutes
