@@ -23,13 +23,13 @@
                                     </el-icon>
                                 </el-upload>
                                 <el-tag style="margin-top: 20px;" type="primary" effect="dark">
-                                    老人头像
+                                    头像
                                 </el-tag>
                             </div>
                             <div class="record-add-basic-form">
                                 <el-row :gutter="120">
                                     <el-col :span="12">
-                                        <el-form-item label="长者姓名">
+                                        <el-form-item label="姓名">
                                             <el-input v-model="form.user" placeholder="长者姓名" clearable />
                                         </el-form-item>
                                     </el-col>
@@ -78,20 +78,63 @@
                             </div>
                         </div>
                     </el-card>
+
+                     <el-card class="record-add-body-item">
+                        <template #header>
+                            <div class="card-header">
+                                <span>岗位信息</span>
+                            </div>
+                        </template>
+                        <el-row :gutter="30">
+                            <el-col :span="12">
+                                <el-form-item label="工号">
+                                    <el-input v-model="form.user" placeholder="签约主体" clearable />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="部门">
+                                    <el-input v-model="form.user" placeholder="机构名称" clearable />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-form-item label="岗位">
+                            <!-- <el-input  v-model="form.user" placeholder="联系电话" clearable /> -->
+                        </el-form-item>
+                        <el-form-item label="文化程度">
+                            <el-input  v-model="form.user" placeholder="文化程度" clearable />
+                        </el-form-item>
+                        <el-form-item label="职称">
+                            <el-date-picker v-model="form.date" type="date" placeholder="职称" />
+                        </el-form-item>
+                        <el-form-item label="政治面貌">
+                            <el-input  v-model="form.user" placeholder="政治面貌" clearable />
+                        </el-form-item>
+                        <el-row :gutter="30">
+                            <el-col :span="12">
+                                <el-form-item label="考勤编号">
+                                    <el-input v-model="form.user" placeholder="考勤编号" clearable />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="考勤类型">
+                                    <el-input v-model="form.user" placeholder="考勤类型" clearable />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-form-item label="户籍地址">
+                            <el-input  v-model="form.user" placeholder="户籍地址" clearable />
+                        </el-form-item>
+                    </el-card>
                     <el-card class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
-                                <span>担保人信息</span>
+                                <span>纸质证书</span>
                             </div>
                         </template>
 
                         <el-table style="width: 100%">
                             <el-table-column prop="date" label="类型" />
-                            <el-table-column prop="date" label="姓名" />
-                            <el-table-column prop="name" label="手机号码" />
-                            <el-table-column prop="state" label="关系" />
-                            <el-table-column prop="address" label="证件号码" />
-                            <el-table-column prop="zip" label="户籍地址" />
+                            <el-table-column prop="date" label="职称" />
                             <el-table-column prop="zip" label="操作" />
                         </el-table>
                         <el-button :icon="Plus" style="width: 100%;" type="primary"></el-button>
@@ -99,84 +142,13 @@
                     <el-card class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
-                                <span>合同信息</span>
+                                <span>负责位置</span>
                             </div>
                         </template>
-                        <el-form-item label="合同类型">
-                            <el-radio-group v-model="form.type">
-                                <el-radio value="Online activities" name="type">
-                                    寄养协议
-                                </el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-                        <el-form-item label="计费周期">
-                            <el-col :span="11">
-                                <el-date-picker v-model="form.date1" type="date" placeholder="开始时间"
-                                    style="width: 100%" />
-                            </el-col>
-                            <el-col :span="2" class="text-center">
-                                <span class="text-gray-500">-</span>
-                            </el-col>
-                            <el-col :span="11">
-                                <el-time-picker v-model="form.date2" placeholder="结束时间" style="width: 100%" />
-                            </el-col>
-                        </el-form-item>
-
-                        <el-form-item label="收费内容">
-                            <el-table style="width: 100%">
-                                <el-table-column prop="date" label="费用类型" />
-                                <el-table-column prop="date" label="计费方式" />
-                                <el-table-column prop="name" label="已选内容" />
-                                <el-table-column prop="state" label="费项名称" />
-                                <el-table-column prop="address" label="金额" />
-                                <el-table-column prop="zip" label="操作" />
-                            </el-table>
-                            <el-button :icon="Plus" style="width: 100%;" type="primary"></el-button>
-                        </el-form-item>
 
                     </el-card>
 
-                    <el-card class="record-add-body-item">
-                        <template #header>
-                            <div class="card-header">
-                                <span>附加条款</span>
-                            </div>
-                        </template>
-                        <el-input type="textarea" placeholder="条款内容" clearable>
-
-                        </el-input>
-                    </el-card>
-                    <el-card class="record-add-body-item">
-                        <template #header>
-                            <div class="card-header">
-                                <span>甲方信息</span>
-                            </div>
-                        </template>
-                        <el-row :gutter="30">
-                            <el-col :span="12">
-                                <el-form-item label="签约主体">
-                                    <el-input v-model="form.user" placeholder="签约主体" clearable />
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="12">
-                                <el-form-item label="机构名称">
-                                    <el-input v-model="form.user" placeholder="机构名称" clearable />
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                        <el-form-item label="联系电话">
-                            <el-input style="width: 16rem;" v-model="form.user" placeholder="联系电话" clearable />
-                        </el-form-item>
-                        <el-form-item label="机构地址">
-                            <el-input type="textarea" v-model="form.user" placeholder="机构地址" clearable />
-                        </el-form-item>
-                        <el-form-item label="签约日期">
-                            <el-date-picker v-model="form.date" type="date" placeholder="签约日期" />
-                        </el-form-item>
-                        <el-form-item label="备注">
-                            <el-input type="textarea" v-model="form.user" placeholder="备注" clearable />
-                        </el-form-item>
-                    </el-card>
+                   
                 </el-form>
             </el-scrollbar>
         </div>
@@ -185,7 +157,7 @@
                 <el-button @click="onBack" :icon="Back" round size="large">返回</el-button>
             </div>
             <div style="flex: 1; display: flex;justify-content: right;align-items: center;">
-                <el-button type="warning" :icon="Refresh" round size="large" style="margin-left: 20px;">更新数据</el-button>
+                <!-- <el-button type="warning" :icon="Refresh" round size="large" style="margin-left: 20px;">更新数据</el-button> -->
                 <el-button type="success" :icon="Select" round size="large" style="margin-left: 20px;">保存</el-button>
             </div>
         </div>

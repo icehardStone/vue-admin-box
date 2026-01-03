@@ -34,7 +34,6 @@ const FrontRoutes: Route[] = [
   ...Print,
   ...Community,
   ...Tab,
-  ...Old
 ]
 
 export default FrontRoutes

@@ -2,12 +2,12 @@
   <div class="layout-container">
     <div class="layout-container-form flex space-between">
       <div class="layout-container-form-handle">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增合同</el-button>
+        <!-- <el-button type="primary" :icon="Plus" @click="handleAdd">新增合同</el-button>
         <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel(chooseData)">
           <template #reference>
             <el-button type="danger" :icon="Delete" :disabled="chooseData.length === 0">作废</el-button>
           </template>
-        </el-popconfirm>
+        </el-popconfirm> -->
       </div>
       <div class="layout-container-form-search flex center">
         <el-input v-model="query.input" :placeholder="$t('message.common.searchTip')" @change="getTableData(true)"></el-input>
@@ -21,25 +21,46 @@
         ref="table"
         v-model:page="page"
         v-loading="loading"
-        :showIndex="true"
         :showSelection="true"
+              :preserve-expanded-content="preserveExpanded"
         :data="tableData"
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
+        <el-table-column type="expand">
+                    <template #default="props">
+                        <div v-for="i in 10" class="care-record">
+                            <div class="care-record-info">
+                                <p>拟定认知程度：<el-tag>中度认知障碍</el-tag></p>
+                                <p>是否适合入住：是</p>
+                                <p>认知障碍得分：13 分</p>
+                                <p>自理能力：35 分</p>
+                                <p>评估时间：2025-12-03</p>
+                                <p>依赖程度：重度依赖</p>
+                            </div>
+                            <div class="care-record-tools">
+                                <el-button type="primary">查看</el-button>
+                                <el-button type="info">打印</el-button>
+                            </div>
+                        </div>
+                    </template>
+                </el-table-column>
         <el-table-column prop="name" label="档案号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="合同类型" align="center" />
-        <el-table-column prop="radioName" label="入院日期" align="center" />
-        <el-table-column prop="radioName" label="计费周期" align="center" />
-        <el-table-column prop="radioName" label="签约类型" align="center" />
+        <el-table-column prop="name" label="性别" align="center" />
+        <el-table-column prop="name" label="年龄" align="center" />
+        <el-table-column prop="radioName" label="联系电话" align="center" />
+        <el-table-column prop="radioName" label="适合入住" align="center" />
+        <el-table-column prop="radioName" label="认知障碍得分" align="center" />
+        <el-table-column prop="radioName" label="拟定认知程度" align="center" />
+        <el-table-column prop="radioName" label="自理能力得分" align="center" />
         <el-table-column prop="radioName" label="状态" align="center" />
+        <el-table-column prop="radioName" label="评估人" align="center" />
+        <el-table-column prop="radioName" label="评估日期" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
-            <el-button @click="handleEdit(scope.row)">查看</el-button>
-            <el-button type="warning" @click="handleEdit(scope.row)">{{ $t('message.common.update') }}</el-button>
+            <el-button @click="handleEdit(scope.row)">详情</el-button>
+            <el-button type="warning" @click="handleEdit(scope.row)">去评估</el-button>
           </template>
         </el-table-column>
       </Table>
@@ -146,6 +167,7 @@ export default defineComponent({
     const handleEdit = (row: object) => {
     }
     getTableData(true)
+            const preserveExpanded = ref(false)
     return {
       Plus,
       Search,
@@ -162,7 +184,8 @@ export default defineComponent({
       handleAdd,
       handleEdit,
       handleDel,
-      getTableData
+      getTableData,
+      preserveExpanded
     }
   }
 })
@@ -176,5 +199,22 @@ export default defineComponent({
   &:hover {
     cursor: pointer;
   }
+}
+
+.care-record {
+    margin: 15px 15px;
+    border: 1px solid blue;
+    padding: 15px;
+    display: flex;
+
+    .care-record-info {
+        display: grid;
+        flex: 1;
+        grid-template-columns: repeat(4, 1fr);
+
+        p {
+            // font-size: 14px;
+        }
+    }
 }
 </style>

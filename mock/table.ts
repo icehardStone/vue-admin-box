@@ -55,47 +55,17 @@ export default [
       return {
         code: 200,
         data: [{
-          label: '人事部',
+          label: '基础费用',
           id: 1,
-          'children|5': [{
-            label: '@cname',
-            'id|+1': 10
-          }]
         }, {
-          label: '研发部',
+          label: '其他费用',
           id: 2,
           children: [{
             label: '前端',
-            id: 3,
-            'children|5': [{
-              label: '@cname',
-              'id|+1': 20
-            }]
+            id: 3
           }, {
             label: '后端',
-            id: 4,
-            'children|5': [{
-              label: '@cname',
-              'id|+1': 30
-            }]
-          }]
-        }, {
-          label: '运营部',
-          id: 5,
-          children: [{
-            label: '市场运营',
-            id: 6,
-            'children|5': [{
-              label: '@cname',
-              'id|+1': 40
-            }]
-          }, {
-            label: '互联网营销',
-            id: 7,
-            'children|5': [{
-              label: '@cname',
-              'id|+1': 50
-            }]
+            id: 4
           }]
         }],
         msg: ''

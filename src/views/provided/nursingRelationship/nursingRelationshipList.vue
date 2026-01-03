@@ -2,12 +2,12 @@
   <div class="layout-container">
     <div class="layout-container-form flex space-between">
       <div class="layout-container-form-handle">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增合同</el-button>
-        <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel(chooseData)">
+        <!-- <el-button type="primary" :icon="Plus" @click="handleAdd">人员新增</el-button> -->
+        <!-- <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel(chooseData)">
           <template #reference>
             <el-button type="danger" :icon="Delete" :disabled="chooseData.length === 0">作废</el-button>
           </template>
-        </el-popconfirm>
+        </el-popconfirm> -->
       </div>
       <div class="layout-container-form-search flex center">
         <el-input v-model="query.input" :placeholder="$t('message.common.searchTip')" @change="getTableData(true)"></el-input>
@@ -27,15 +27,9 @@
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="name" label="档案号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="合同类型" align="center" />
-        <el-table-column prop="radioName" label="入院日期" align="center" />
-        <el-table-column prop="radioName" label="计费周期" align="center" />
-        <el-table-column prop="radioName" label="签约类型" align="center" />
-        <el-table-column prop="radioName" label="状态" align="center" />
+        <el-table-column prop="radioName" label="负责区域" align="center" />
+        <el-table-column prop="radioName" label="老人数量" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -139,11 +133,14 @@ export default defineComponent({
     // 新增弹窗功能
     const handleAdd = () => {
       router.push({
-        name: 'contractAdd'
+        name: 'nursingRelationshipDetail'
       })
     }
     // 编辑弹窗功能
     const handleEdit = (row: object) => {
+       router.push({
+        name: 'nursingRelationshipDetail'
+      })
     }
     getTableData(true)
     return {

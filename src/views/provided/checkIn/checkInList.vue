@@ -2,7 +2,7 @@
   <div class="layout-container">
     <div class="layout-container-form flex space-between">
       <div class="layout-container-form-handle">
-        <el-button type="primary" :icon="Plus" @click="handleAdd">新增合同</el-button>
+        <el-button type="primary" :icon="Plus" @click="handleAdd">新增入住</el-button>
         <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel(chooseData)">
           <template #reference>
             <el-button type="danger" :icon="Delete" :disabled="chooseData.length === 0">作废</el-button>
@@ -30,12 +30,14 @@
         <el-table-column prop="name" label="档案号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
         <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="合同类型" align="center" />
-        <el-table-column prop="radioName" label="入院日期" align="center" />
-        <el-table-column prop="radioName" label="计费周期" align="center" />
-        <el-table-column prop="radioName" label="签约类型" align="center" />
         <el-table-column prop="radioName" label="状态" align="center" />
+        <el-table-column prop="radioName" label="标签" align="center" />
+        <el-table-column prop="radioName" label="手机号" align="center" />
+        <el-table-column prop="radioName" label="户口地址" align="center" />
+        <el-table-column prop="radioName" label="照护等级" align="center" />
+        <el-table-column prop="radioName" label="第三方评估" align="center" />
+        <el-table-column prop="radioName" label="监护人" align="center" />
+        <el-table-column prop="radioName" label="监护人电话" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -139,7 +141,7 @@ export default defineComponent({
     // 新增弹窗功能
     const handleAdd = () => {
       router.push({
-        name: 'contractAdd'
+        name: 'checkInAdd'
       })
     }
     // 编辑弹窗功能

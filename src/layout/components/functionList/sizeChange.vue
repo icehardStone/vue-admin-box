@@ -32,6 +32,7 @@ export default defineComponent({
       { size: 'default', name: 'message.system.size.default' },
       { size: 'small', name: 'message.system.size.small' },
     ]
+    
     const { fullPath } = unref(route)
     return {
       list,

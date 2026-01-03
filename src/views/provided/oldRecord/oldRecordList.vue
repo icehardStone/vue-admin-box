@@ -40,11 +40,11 @@
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
             <el-button type="warning" @click="handleEdit(scope.row)">{{ $t('message.common.update') }}</el-button>
-            <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel([scope.row])">
+            <!-- <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel([scope.row])">
               <template #reference>
                 <el-button type="danger">{{ $t('message.common.del') }}</el-button>
               </template>
-            </el-popconfirm>
+            </el-popconfirm> -->
           </template>
         </el-table-column>
       </Table>
