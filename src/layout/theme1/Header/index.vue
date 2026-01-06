@@ -23,12 +23,7 @@
         </el-tooltip>
         <el-tooltip effect="light" content="消息" placement="bottom-end">
           <div @click="openMsg" class="function-list-item function-list-item-hover">
-            <el-badge 
-              :value="100" 
-              badge-style="font-size: 12px"
-              type="primary"
-              class="item" 
-              :offset="[5, -3]">
+            <el-badge :value="100" badge-style="font-size: 12px" type="primary" class="item" :offset="[5, -3]">
               <el-icon size="18">
                 <Bell />
               </el-icon>
@@ -36,7 +31,7 @@
           </div>
         </el-tooltip>
         <el-tooltip effect="light" content="自定义设置" placement="bottom-end">
-          <div class="function-list-item function-list-item-hover">
+          <div @click="openSetting" class="function-list-item function-list-item-hover">
             <el-icon size="18">
               <Postcard />
             </el-icon>
@@ -51,8 +46,8 @@
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         <Userdetail class="user-info-detail"></Userdetail>
       </div>
-       <Msg
-       />
+      <Msg  />
+      <Setting/>
     </div>
   </header>
 </template>
@@ -69,6 +64,7 @@ import Theme from '../../components/functionList/theme.vue'
 import Breadcrumb from './Breadcrumb.vue'
 import PasswordLayer from '../../components/passwordLayer.vue'
 import Msg from '@/layout/components/functionList/msg.vue'
+import Setting from '@/layout/components/functionList/setting.vue'
 import Userdetail from '@/layout/components/functionList/userdetail.vue'
 import { Search, Bell, Postcard, HomeFilled } from '@element-plus/icons-vue'
 export default defineComponent({
@@ -85,7 +81,11 @@ export default defineComponent({
     Postcard,
     HomeFilled,
     Userdetail,
-    Msg
+    Msg,
+    Setting
+  },
+  directives: {
+    // clickoutside
   },
   setup() {
     const store = useStore()
@@ -100,9 +100,12 @@ export default defineComponent({
     const opendStateChange = () => {
       store.commit('app/isCollapseChange', !isCollapse.value)
     }
-    const isShowMsg = computed(() => store.state.app.showMsg)
     const openMsg = () => {
-       store.commit('app/isShowMsg', !isShowMsg.value)
+       store.commit('app/isShowMsg', true)
+    }
+
+    const openSetting = () => {
+      store.commit('app/isShowSetting', true)
     }
 
     // login out the system
@@ -124,7 +127,9 @@ export default defineComponent({
       Postcard,
       HomeFilled,
       Msg,
-      openMsg
+      Setting,
+      openMsg,
+      openSetting,
     }
   }
 })
@@ -153,6 +158,7 @@ header {
     margin-right: 10px;
     height: 100%;
     padding: 0 10px;
+
     &:hover {
       background-color: var(--system-header-item-hover-color);
     }

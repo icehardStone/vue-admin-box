@@ -17,7 +17,7 @@ export interface appState {
   showLogo: boolean,
   fixedTop: boolean,
   showTabs: boolean,
-  showMsg: boolean,
+  isShowMsg: boolean,
   expandOneMenu: boolean,
   elementSize: string,
   lang: string,
@@ -37,7 +37,8 @@ const state = () => ({
   expandOneMenu: true, // 一次是否只能展开一个菜单
   elementSize: 'default', // element默认尺寸，支持官网'large / default /small'小参数
   lang: '', // 默认采用的国际化方案,初次进入，采用浏览器当前设置的语言，默认采用中文
-  showMsg: false,
+  isShowMsg: false,  // 是否显示消息栏
+  isShowSetting: false, // 是否显示自定义设置栏
   theme: {
     state: {
       style: 'default',
@@ -53,8 +54,11 @@ const mutations = {
   isCollapseChange(state: appState, type: boolean) {
     state.isCollapse = type
   },
-  isShowMsg(state: appState, showMsg: boolean) {
-    state.showMsg = showMsg
+  isShowMsg(state: appState, isShowMsg: boolean) {
+    state.isShowMsg = isShowMsg
+  },
+  isShowSetting(state: appState, isShowSetting:boolean) {
+    state.isShowSetting = isShowSetting
   },
   contentFullScreenChange(state: appState, type: boolean) {
     state.contentFullScreen = type

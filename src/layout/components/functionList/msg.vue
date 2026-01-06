@@ -1,54 +1,39 @@
 <template>
-    <div
-    class="site-message"
-    ref="messageRef" 
-    :class="isShowMsg ? 'show' : 'hide'"
-    >
-        <div class="site-message-header">
-            <div>消息</div>
-            <div class="site-message-header-right">
-                <el-button type="success" link>查看更多</el-button>
-                <el-button type="info" @click="closeMsg" link>
-                    <el-icon size="18">
-                        <Close />
-                    </el-icon>
-                </el-button>
-            </div>
-        </div>
-        <el-divider class="m-0" />
+    <SlidePanel title="消息" v-model:visible="localVisible">
         <el-scrollbar class="site-message-body" @end-reached="loadMore">
         </el-scrollbar>
-    </div>
+    </SlidePanel>
 </template>
 
 <script lang="ts">
-import { Close } from '@element-plus/icons'
+// import { Close } from '@element-plus/icons'
 import { defineComponent, ref, watch, onUnmounted, computed } from 'vue'
 import { useStore } from 'vuex'
+import SlidePanel from '../slidePanel/index.vue'
 
 export default defineComponent({
     components: {
-        Close,
+        SlidePanel
+    },
+    props: {
     },
     setup(props, { emit }) {
         const store = useStore()
-        const messageRef = ref<HTMLElement>()
-        
+
         const loadMore = () => {
             console.log("到达底部")
         }
 
-        const closeMsg = () => {
-             store.commit('app/isShowMsg', false)
-        }
-
-        const isShowMsg = computed(() => store.state.app.showMsg)
-        
+        // 监听 store 中的状态
+        const localVisible = computed({
+            get: () => store.state.app.isShowMsg,
+            set: (value) => {
+                store.commit('app/isShowMsg', value)
+            }
+        })
         return {
-            closeMsg,
             loadMore,
-            messageRef,
-            isShowMsg
+            localVisible,
         }
     }
 })
@@ -56,13 +41,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .site-message {
-    width: 340px;
+    width: 0px;
     position: fixed;
     top: 60px;
     right: 0;
     height: calc(100vh - 60px);
     z-index: 2063;
-    overflow: hidden;  /* 添加这行以在动画期间隐藏内容 */
+    overflow: hidden;
+    /* 添加这行以在动画期间隐藏内容 */
 
     background-color: var(--system-page-background);
     color: var(--system-page-color);
@@ -86,12 +72,15 @@ export default defineComponent({
     }
 
     &.show {
-        animation: showBox 0.4s ease-in-out forwards; /* 添加 forwards 保持最终状态 */
+        animation: showBox 0.4s ease-in-out forwards;
+        /* 添加 forwards 保持最终状态 */
     }
 
     &.hide {
-        animation: hideBox 0.4s ease-in-out forwards; /* 添加 forwards 保持最终状态 */
-        pointer-events: none; /* 隐藏时禁用交互 */
+        animation: hideBox 0.4s ease-in-out forwards;
+        /* 添加 forwards 保持最终状态 */
+        pointer-events: none;
+        /* 隐藏时禁用交互 */
     }
 
     .site-message-body {
@@ -105,6 +94,7 @@ export default defineComponent({
         width: 0px;
         opacity: 0;
     }
+
     100% {
         width: 340px;
         opacity: 1;
@@ -117,6 +107,7 @@ export default defineComponent({
         width: 340px;
         opacity: 1;
     }
+
     100% {
         width: 0px;
         opacity: 0;

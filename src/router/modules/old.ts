@@ -181,6 +181,36 @@ const route: Route[] = [
       },
     ]
   },
+ {
+    path: '/out',
+    component: Layout,
+    redirect: '/out/registration',
+    meta: { title: '外出管理', icon: 'sfont system-chart' },
+    children: [
+      {
+        path: 'registration',
+        component: createNameComponent(() => import('@/views/provided/out/outRegistration.vue')),
+        meta: { title: '外出申请' }
+      },
+      {
+        path: 'outRegistrationAdd',
+        name: 'outRegistrationAdd',
+        hideMenu: true,
+        component: createNameComponent(() => import('@/views/provided/out/outRegistrationAdd.vue')),
+        meta: { title: '新增外出申请' }
+      },
+      {
+        path: 'examine',
+        component: createNameComponent(() => import('@/views/provided/out/outExamine.vue')),
+        meta: { title: '外出审核' }
+      },
+      {
+        path: 'statistics',
+        component: createNameComponent(() => import('@/views/provided/out/outStatistics.vue')),
+        meta: { title: '外出统计' }
+      },
+    ]
+  },
 ]
 
 export default route
