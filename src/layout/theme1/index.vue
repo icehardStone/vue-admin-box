@@ -54,7 +54,7 @@ export default defineComponent({
       if (document.body.clientWidth <= 1000 && !isCollapse.value) {
         store.commit("app/isCollapseChange", true);
       } else if (document.body.clientWidth > 1000 && isCollapse.value) {
-        store.commit("app/isCollapseChange", false);
+        // store.commit("app/isCollapseChange", false);
       }
     };
     // 初始化调用
@@ -110,6 +110,7 @@ export default defineComponent({
 :deep(.el-main-box) {
   width: 100%;
   height: 100%;
+  padding: 0;
   overflow-y: auto;
   box-sizing: border-box;
 }

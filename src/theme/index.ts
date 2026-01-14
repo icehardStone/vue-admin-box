@@ -33,6 +33,7 @@ export interface Colors {
 }
 
 export interface Style {
+  
   default: Colors
   light: Colors
   dark: Colors,
@@ -54,11 +55,11 @@ export const style: Style = {
     },
     header: {
       // background: '#fff',
-      background: '#181f31',
+      background: '#305fd7ff',
       // textColor: '#303133',
       textColor: '#fff',
       itemHoverColor: 'rgba(0,0,0,.06)',
-      breadcrumbTextColor: '#606266',
+      breadcrumbTextColor: '#e4e7edff',
       borderColor: '#d8dce5',
       tabBackground: '#fff'
     },

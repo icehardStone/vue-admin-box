@@ -13,6 +13,11 @@
       </div>
     </div>
     <div class="center-box">
+      <div class="header-classfy">
+        <div class="header-classfy-item" v-for="c in classfies" @click="changeClassfy(c)" v-bind:key="c.classfy">
+          {{ c.name }}
+        </div>
+      </div>
       <el-input style="max-width: 340px" placeholder="支持通过名称等搜索资源" :prefix-icon="Search" />
     </div>
     <div class="right-box">
@@ -46,13 +51,19 @@
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         <Userdetail class="user-info-detail"></Userdetail>
       </div>
-      <Msg  />
-      <Setting/>
+      <Msg />
+      <Setting />
     </div>
   </header>
 </template>
 
 <script lang="ts">
+
+interface menuClass {
+  name: string,  //名称，类型
+  type: string,
+  href: string //地址
+}
 import { defineComponent, computed, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
@@ -101,7 +112,7 @@ export default defineComponent({
       store.commit('app/isCollapseChange', !isCollapse.value)
     }
     const openMsg = () => {
-       store.commit('app/isShowMsg', true)
+      store.commit('app/isShowMsg', true)
     }
 
     const openSetting = () => {
@@ -115,6 +126,14 @@ export default defineComponent({
 
     const showPasswordLayer = () => {
       layer.show = true
+    }
+
+    const classfies = computed(() => store.state.app.classfies)
+    const changeClassfy = (c: any) => {
+      store.commit('app/classfyChange', c.classfy)
+      router.push({
+        path: c.entryUrl
+      })
     }
     return {
       isCollapse,
@@ -130,6 +149,8 @@ export default defineComponent({
       Setting,
       openMsg,
       openSetting,
+      classfies,
+      changeClassfy
     }
   }
 })
@@ -183,6 +204,24 @@ header {
   justify-content: flex-end;
   align-items: center;
   margin-right: 40px;
+  height: 100%;
+
+  .header-classfy {
+    height: 100%;
+    line-height: 60px;
+    flex: 1;
+    display: flex;
+
+    .header-classfy-item {
+      color: var(--system-header-text-color);
+      padding: 0 10px;
+
+      &:hover {
+        background-color: var(--system-header-item-hover-color);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .right-box {

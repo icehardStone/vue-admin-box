@@ -27,19 +27,22 @@ async function addRoutes() {
   return new Promise<void>((resolve) => {
     if (isBackMenu) {
       getMenu()
-      .then((data) => {
-        data.forEach(item => {
-          modules.push(item)
-          router.addRoute(item)
+        .then((data) => {
+          data.backRoutes.forEach(item => {
+            modules.push(item)
+            router.addRoute(item)
+          })
+          // debugger
+          store.commit('app/classfiesChange', data.classfies)
+          resolve()
         })
-        resolve()
-      })
       return
-    }    
+    }
     FrontRoutes.forEach(item => {
       modules.push(item)
       router.addRoute(item)
     })
+
     resolve()
   })
 }

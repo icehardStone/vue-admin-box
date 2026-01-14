@@ -12,8 +12,18 @@ import { getMenuApi } from '@/api/user'
 /** 获取后台模板配置清单 */
 const getMenu = async () => {
   const result = await getMenuApi()
+  // debugger
   const backRoutes = getComponents(result.data.list)
-  return backRoutes
+  let classfies: any[] = [
+
+  ]
+  // debugger
+  if (result.data.classfies) {
+    classfies = result.data.classfies
+  }
+  return {
+    backRoutes, classfies
+  }
 }
 
 /** 循环取出component */
@@ -34,7 +44,7 @@ const getComponents = (data: any[], level = 1) => {
         }
       }
     } else {
-      const [first, end] =  item.component.split('_')
+      const [first, end] = item.component.split('_')
       const component = backConfig[first][end]
       return {
         ...item,

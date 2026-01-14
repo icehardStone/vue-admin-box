@@ -9,7 +9,8 @@ export type Route = {
     component: DefineComponent<{}, {}, any> | (() => Promise<DefineComponent<{}, {}, any>>)
     /** @name 基础元数据 */
     meta: Meta
-
+    /** @name 分类 */
+    classfy?: string
     /** @name 路由名称，全局唯一，可以不填 */
     name?: string
     /** @name 需要重定向的地址，可选 */

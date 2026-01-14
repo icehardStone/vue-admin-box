@@ -11,6 +11,12 @@ type optionValue<T> = {
   value: T[keyof T]
 }
 
+
+interface Classfy {
+  name: string,
+  classfy: string,
+  entryUrl: string
+}
 export interface appState {
   isCollapse: boolean,
   contentFullScreen: boolean,
@@ -20,6 +26,8 @@ export interface appState {
   isShowMsg: boolean,
   expandOneMenu: boolean,
   elementSize: string,
+  classfy: string,
+  classfies: Array<Classfy>,
   lang: string,
   theme: {
     primaryColor: '#409eff',
@@ -29,7 +37,7 @@ export interface appState {
 }
 
 const state = () => ({
-  isCollapse: false, // 侧边栏是否收缩展示
+  isCollapse: true, // 侧边栏是否收缩展示
   contentFullScreen: false, // 内容是否可全屏展示
   showLogo: true, // 是否显示Logo
   fixedTop: false, // 是否固定顶部, todo，暂未使用
@@ -39,6 +47,8 @@ const state = () => ({
   lang: '', // 默认采用的国际化方案,初次进入，采用浏览器当前设置的语言，默认采用中文
   isShowMsg: false,  // 是否显示消息栏
   isShowSetting: false, // 是否显示自定义设置栏
+  classfy: "comprehensive", // 子系统菜单
+  classfies: [],
   theme: {
     state: {
       style: 'default',
@@ -65,6 +75,12 @@ const mutations = {
   },
   menuListChange(state: appState, arr: []) {
     state.menuList = arr
+  },
+  classfyChange(state: appState,  classfy: string) {
+    state.classfy = classfy
+  },
+  classfiesChange(state:appState, classfies:Classfy[]) {
+    state.classfies = classfies
   },
   stateChange(state: appState, option: Option<appState>) {
     state[option.name] = option.value

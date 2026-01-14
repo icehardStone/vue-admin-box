@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">
+  <div class="layout-container room-setting">
     <el-collapse v-model="activeNames">
       <el-collapse-item name="1">
         <template #title>
@@ -27,7 +27,8 @@
       </el-collapse-item>
     </el-collapse>
     <div class="area-tools">
-      <h4 style="text-align: left;">选择：楼栋1</h4>
+      <!-- <h4 style="text-align: left;">选择：楼栋1</h4> -->
+       <div style="text-align: left;padding: 15px 0;">选择：楼栋1</div>
       <div>
         <el-button @click="handleBuild">{{ showBuild ? '收起' : '展开' }}楼栋面板</el-button>
       </div>
@@ -349,6 +350,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
+.room-setting{
+  box-sizing: border-box;
+  padding: 0 15px 15px 15px;
+}
 .main-color {
   background-color: white;
   color: black;

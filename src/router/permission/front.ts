@@ -12,7 +12,7 @@ import Pages from '../modules/pages'
 import Menu from '../modules/menu'
 import Component from '../modules/component'
 import Directive from '../modules/directive'
-import SystemManage from '../modules/systemManage'
+import Comprehensive from '../modules/comprehensive'
 import Chart from '../modules/chart'
 import Print from '../modules/print'
 import Community from '../modules/community'
@@ -22,18 +22,19 @@ import Tab from '../modules/tab'
 import Old from '../modules/old'
 /** 登录后需要动态加入的本地路由 */
 const FrontRoutes: Route[] = [
+  // ...Old,
+  // ...Document,
+  // ...Component,
+  // ...Pages,
+  // ...Menu,
+  // ...Directive,
+  // ...Chart,
+
+  // ...Print,
+  // ...Community,
+  // ...Tab,
   ...Dashboard,
-  ...Old,
-  ...Document,
-  ...Component,
-  ...Pages,
-  ...Menu,
-  ...Directive,
-  ...Chart,
-  ...SystemManage,
-  ...Print,
-  ...Community,
-  ...Tab,
+  ...Comprehensive,
 ]
 
 export default FrontRoutes

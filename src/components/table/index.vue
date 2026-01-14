@@ -4,7 +4,8 @@
       v-bind="$attrs"
       ref="table"
       class="system-table"
-      border
+      
+      stripe
       height="100%"
       :data="data"
       @selection-change="handleSelectionChange"
@@ -18,9 +19,9 @@
       <slot></slot>
     </el-table>
     <div      
-      class="system-page-table-box">
+      v-if="showPage" class="system-page-table-box">
       <el-pagination
-      v-if="showPage"
+      
       class="system-page-table"
       v-model:current-page="page.index"
       background

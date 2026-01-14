@@ -1,27 +1,21 @@
 <template>
   <el-scrollbar>
-    <el-menu
-      class="layout-menu system-scrollbar"
-      background-color="var(--system-menu-background)"
-      text-color="var(--system-menu-text-color)"
-      active-text-color="var(--system-primary-color)"
-      :mode="mode"
-      :default-active="activeMenu"
-      :class="isCollapse? 'collapse': ''"
-      :collapse="isCollapse"
-      :collapse-transition="false"
-      :unique-opened="expandOneMenu"
-    >
-      <menu-item v-for="(menu, key) in allRoutes" :key="key" :menu="menu" />
+    <el-menu class="layout-menu system-scrollbar" background-color="var(--system-menu-background)"
+      text-color="var(--system-menu-text-color)" active-text-color="var(--system-primary-color)" :mode="mode"
+      :default-active="activeMenu" :class="isCollapse ? 'collapse' : ''" :collapse="isCollapse"
+      :collapse-transition="false" :unique-opened="expandOneMenu">
+      <!-- 里的 key 是数组索引（0, 1, 2...），如果只是内容变化而索引没变，Vue 可能会复用组件实例。 -->
+      <menu-item v-for="(menu, key) in menus" :key="menu.path" :menu="menu" />
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue'
+import { defineComponent, computed, onMounted, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import MenuItem from './MenuItem.vue'
+
 export default defineComponent({
   props: {
     mode: {
@@ -37,8 +31,9 @@ export default defineComponent({
     const store = useStore()
     const isCollapse = computed(() => store.state.app.isCollapse)
     const expandOneMenu = computed(() => store.state.app.expandOneMenu)
-    const allRoutes = useRouter().options.routes
+    const allRoutes = useRouter().options.routes;
     const route = useRoute()
+
     const activeMenu: any = computed(() => {
       const { meta, path } = route;
       if (meta.activeMenu) {
@@ -46,84 +41,116 @@ export default defineComponent({
       }
       return path;
     });
+
+    // 分类类型
+    
+    const menus = computed(() => {
+      const { meta, path } = route;
+      // debugger
+      return allRoutes.filter((s:any) => {
+        return s.meta.classfy === meta.classfy
+      })
+    })
     onMounted(() => {
 
     })
     return {
       isCollapse,
       expandOneMenu,
-      allRoutes,
+      menus,
       activeMenu,
-      mode,
+      mode
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-  .el-scrollbar {
-    background-color: var(--system-menu-background);
-    flex: 1;
-    overflow: auto;
+.el-scrollbar {
+  background-color: var(--system-menu-background);
+  flex: 1;
+  overflow: auto;
+}
+
+.layout-menu {
+  width: 100%;
+  border: none;
+
+  &.collapse {
+    margin-left: 0px;
   }
-  .layout-menu {
-    width: 100%;
-    border: none;
-    &.collapse {
-      margin-left: 0px;
+
+  :deep() {
+
+    .el-menu-item,
+    .el-sub-menu {
+      background-color: var(--system-menu-background) !important;
     }
-    :deep() {
-      .el-menu-item, .el-sub-menu {
-        background-color: var(--system-menu-background) !important;
+
+    .el-menu-item i,
+    .el-menu-item-group__title,
+    .el-sub-menu__title i {
+      color: var(--system-menu-text-color);
+    }
+
+    .el-menu-item,
+    .el-sub-menu__title {
+      &.is-active {
+        background-color: var(--system-primary-color) !important;
+        color: var(--system-primary-text-color) !important;
+
+        i {
+          color: var(--system-primary-text-color) !important;
+        }
+
+        &:hover {
+          background-color: var(--system-primary-color) !important;
+          color: var(--system-primary-text-color) !important;
+        }
       }
-      .el-menu-item i, .el-menu-item-group__title, .el-sub-menu__title i {
-        color: var(--system-menu-text-color);
+
+      &:hover {
+        background-color: var(--system-menu-hover-background) !important;
       }
-      .el-menu-item, .el-sub-menu__title{
+    }
+
+    .el-sub-menu {
+      &.is-active {
+
+        >.el-sub-menu__title,
+        >.el-sub-menu__title i {
+          color: var(--system-menu-submenu-active-color) !important;
+        }
+      }
+
+      .el-menu-item {
+        background-color: var(--system-menu-children-background) !important;
+
         &.is-active {
           background-color: var(--system-primary-color) !important;
           color: var(--system-primary-text-color) !important;
-          i {
-            color: var(--system-primary-text-color) !important;
-          }
+
           &:hover {
             background-color: var(--system-primary-color) !important;
             color: var(--system-primary-text-color) !important;
           }
         }
+
         &:hover {
           background-color: var(--system-menu-hover-background) !important;
         }
       }
+
       .el-sub-menu {
-        &.is-active {
-          >.el-sub-menu__title, >.el-sub-menu__title i {
-            color: var(--system-menu-submenu-active-color) !important;
-          }
-        }
-        .el-menu-item {
+        .el-sub-menu__title {
           background-color: var(--system-menu-children-background) !important;
-          &.is-active {
-            background-color: var(--system-primary-color) !important;
-            color: var(--system-primary-text-color) !important;
-            &:hover {
-              background-color: var(--system-primary-color) !important;
-              color: var(--system-primary-text-color) !important;
-            }
-          }
+
           &:hover {
             background-color: var(--system-menu-hover-background) !important;
-          }
-        }
-        .el-sub-menu {
-          .el-sub-menu__title {
-            background-color: var(--system-menu-children-background) !important;
-            &:hover {
-              background-color: var(--system-menu-hover-background) !important;
-            }
           }
         }
       }
     }
   }
+}
 </style>
