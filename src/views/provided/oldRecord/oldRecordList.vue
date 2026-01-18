@@ -28,14 +28,14 @@
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="number" label="档案号" align="center" />
+        <el-table-column prop="recordNo" label="档案号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="性别" align="center" />
-        <el-table-column prop="radioName" label="年龄" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="监护人" align="center" />
-        <el-table-column prop="radioName" label="监护人电话" align="center" />
-        <el-table-column prop="radioName" label="状态" align="center" />
+        <el-table-column prop="idNumber" label="证件号" align="center"  width="170"/>
+        <el-table-column prop="sexName" label="性别" align="center" />
+        <el-table-column prop="age" label="年龄" align="center" />
+        <el-table-column prop="phoneNumber" label="手机号" align="center" />
+        <el-table-column prop="guardianer" label="监护人" align="center" />
+        <el-table-column prop="guardianPhone" label="监护人电话" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -48,7 +48,6 @@
           </template>
         </el-table-column>
       </Table>
-      <!-- <Layer :layer="layer" @getTableData="getTableData" v-if="layer.show" /> -->
     </div>
   </div>
 </template>
@@ -57,7 +56,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { Page } from '@/components/table/type'
-import { getData, del } from '@/api/table'
+import { getData, del } from '@/api/olderly/olderly'
 // import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 import {useRouter, useRoute } from 'vue-router'

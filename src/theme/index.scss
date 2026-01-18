@@ -34,6 +34,16 @@
   
   // element主题色修改
   --el-color-primary: var(--system-primary-color);
+
+
+  // 床位状态
+  --state-background-color-eng: #fb958f;
+  --state-background-color-all: rgba(61, 124, 101, 0.5);
+  --state-background-color-nothing: white;
+
+  --state-foreground-color-eng: white;
+  --state-foreground-color-all: white;
+  --state-foreground-color-nothing: black;
 }
 
 // 进度条颜色修改为主题色

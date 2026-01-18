@@ -2,7 +2,7 @@ import { MockMethod } from 'vite-plugin-mock'
 const labels = ['颤三','性别','婚姻状况']
 export default [
   {
-    url: `/mock/olderly/list`,
+    url: `/mock/outRegistration/list`,
     method: 'post',
     response: ({ body }) => {
       const { page, pageSize } = body
@@ -12,14 +12,20 @@ export default [
            [`list|${pageSize}`]: [
             {
               'id|+1': 0,
+              'inNo|+1': 10089,
+              'bedNo|+1': 100891, 
               'sexName|1':['男','女'],
-              'recordNo|+1': 10089,
-              'recordNo|1':[25012312,250121312] ,
-              'age|+1': 45,
-              'phoneNumber':'@phoneNo',
-              'guardianer': '张三',
-              'guardianPhone': '17356897526',
-              'idNumber|1':['610921195304308475','370983199402124319'] ,
+              'phone':'@phone',
+              'outDate': '@date',
+              'leaveDays|+1': 10,
+              'stopFeeDays|+1': 12,
+              'actualReturnDate': '@date',
+              'statusName|1': [
+                    '已审核',
+                    '未审核'
+              ],
+              'reason': '外出理由',
+              'remark': '备注',
               'name': '@cname',
             }
           ],
@@ -34,7 +40,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/add`,
+    url: `/mock/outRegistration/add`,
     method: 'post',
     response: ({ body }) => {
       return {
@@ -45,7 +51,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/update`,
+    url: `/mock/outRegistration/update`,
     method: 'post',
     response: ({ body }) => {
       return {
@@ -56,7 +62,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/del`,
+    url: `/mock/outRegistration/del`,
     method: 'post',
     response: ({ body }) => {
       return {

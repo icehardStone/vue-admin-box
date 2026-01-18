@@ -1,10 +1,21 @@
 <template>
     <div class="record-add">
 
-        <div class="record-add-body">
-            <el-scrollbar>
-                <el-form :model="form" label-position="right" label-width="auto">
-                    <el-card class="record-add-body-item">
+        <div class="left">
+                <el-anchor :container="containerRef" direction="vertical" type="default" :offset="30"
+                    @click="handleClick">
+                    <el-anchor-link href="#basic" title="基本信息" />
+                    <el-anchor-link href="#guarantor" title="担保人信息" />
+                    <el-anchor-link href="#contact" title="合同信息" />
+                    <el-anchor-link href="#contactAdd" title="附加条款" />
+                    <el-anchor-link href="#iParty" title="甲方信息" />
+                    <el-anchor-link href="#save" title="保存" />
+                </el-anchor>
+            </div>
+
+            <div ref="containerRef" class="right">
+               <el-form :model="form" label-position="right" label-width="auto">
+                    <el-card id="basic" class="record-add-body-item">
                         <template #header>
                             <div class="record-add-body-item-header">
                                 <span>基本信息</span>
@@ -78,7 +89,7 @@
                             </div>
                         </div>
                     </el-card>
-                    <el-card class="record-add-body-item">
+                    <el-card id="guarantor" class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
                                 <span>担保人信息</span>
@@ -96,7 +107,7 @@
                         </el-table>
                         <el-button :icon="Plus" style="width: 100%;" type="primary"></el-button>
                     </el-card>
-                    <el-card class="record-add-body-item">
+                    <el-card id="contact" class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
                                 <span>合同信息</span>
@@ -135,8 +146,7 @@
                         </el-form-item>
 
                     </el-card>
-
-                    <el-card class="record-add-body-item">
+                    <el-card id="contactAdd" class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
                                 <span>附加条款</span>
@@ -146,7 +156,7 @@
 
                         </el-input>
                     </el-card>
-                    <el-card class="record-add-body-item">
+                    <el-card id="iParty" class="record-add-body-item">
                         <template #header>
                             <div class="card-header">
                                 <span>甲方信息</span>
@@ -177,10 +187,7 @@
                             <el-input type="textarea" v-model="form.user" placeholder="备注" clearable />
                         </el-form-item>
                     </el-card>
-                </el-form>
-            </el-scrollbar>
-        </div>
-        <div class="record-add-title flex">
+                    <div id="save">
             <div class="record-add-title-back">
                 <el-button @click="onBack" :icon="Back" round size="large">返回</el-button>
             </div>
@@ -189,6 +196,17 @@
                 <el-button type="success" :icon="Select" round size="large" style="margin-left: 20px;">保存</el-button>
             </div>
         </div>
+                </el-form>
+            </div>
+        <!-- <div class="record-add-title flex">
+            <div class="record-add-title-back">
+                <el-button @click="onBack" :icon="Back" round size="large">返回</el-button>
+            </div>
+            <div style="flex: 1; display: flex;justify-content: right;align-items: center;">
+                <el-button type="warning" :icon="Refresh" round size="large" style="margin-left: 20px;">更新数据</el-button>
+                <el-button type="success" :icon="Select" round size="large" style="margin-left: 20px;">保存</el-button>
+            </div>
+        </div> -->
     </div>
 </template>
 
@@ -235,6 +253,12 @@ export default defineComponent({
             }
             return true
         }
+
+        const containerRef = ref<HTMLElement | null>(null)
+
+        const handleClick = (e: MouseEvent) => {
+            e.preventDefault()
+        }
         return {
             onBack,
             imageUrl,
@@ -245,7 +269,9 @@ export default defineComponent({
             form,
             tabPosition,
             beforeAvatarUpload,
-            handleAvatarSuccess
+            handleAvatarSuccess,
+            containerRef,
+            handleClick
         }
     }
 })
@@ -253,7 +279,25 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .record-add {
-    padding: 0 20px 0 20px;
+    padding: 0 0px 0 20px;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    .left {
+        padding-top: 20px;
+        padding-right: 20px;
+        width: 200px;
+    }
+    overflow: auto;
+
+    .right{
+        overflow: auto;
+        flex: 1;
+
+        .record-add-body-item{
+            margin-top: 10px;
+        }
+    }
 }
 
 .record-add-title {
@@ -282,7 +326,10 @@ export default defineComponent({
 }
 
 .record-add-body {
-    flex: 1;
+    // flex: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
     overflow: auto;
     text-align: left;
 

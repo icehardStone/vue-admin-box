@@ -166,7 +166,7 @@ const room = {
   setting: createNameComponent(() => import('@/views/provided/roomManage/roomSetting.vue')),
   roomLevel: createNameComponent(() => import('@/views/provided/roomManage/roomLevel.vue')),
   roomLevelAdd: createNameComponent(() => import('@/views/provided/roomManage/roomLevelAdd.vue')),
-  state: createNameComponent(() => import('@/views/provided/roomManage/roomSetting.vue')),
+  state: createNameComponent(() => import('@/views/provided/roomManage/roomState.vue')),
 }
 
 /** 设备 */
@@ -207,9 +207,9 @@ const checkIn = {
   checkInAdd: createNameComponent(() => import('@/views/provided/checkIn/checkInAdd.vue')),
 
 }
-const checkOut = {
-  list: createNameComponent(() => import('@/views/provided/checkIn/checkInList.vue')),
-}
+// const checkOut = {
+//   list: createNameComponent(() => import('@/views/provided/checkIn/checkInList.vue')),
+// }
 const out = {
   // 外出申请
   registration: createNameComponent(() => import('@/views/provided/out/outRegistration.vue')),
@@ -289,7 +289,7 @@ const allRoutes = {
   old,
   out,
   checkIn,
-  checkOut,
+  // checkOut,
   nurse,
 
   // 护理照顾

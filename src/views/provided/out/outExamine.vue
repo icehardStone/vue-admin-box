@@ -27,18 +27,18 @@
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="name" label="档案号" align="center" />
-        <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="性别" align="center" />
-        <el-table-column prop="radioName" label="手机号码" align="center" />
-        <el-table-column prop="radioName" label="外出时间" align="center" />
-        <el-table-column prop="radioName" label="离院天数" align="center" />
-        <el-table-column prop="radioName" label="停费天数" align="center" />
-        <el-table-column prop="radioName" label="实际回来时间" align="center" />
-        <el-table-column prop="radioName" label="审核状态" align="center" />
-        <el-table-column prop="radioName" label="外出事由" align="center" />
-        <el-table-column prop="radioName" label="备注" align="center" />
+        <el-table-column prop="inNo" label="住院号" align="center" />
+        <el-table-column prop="bedNo" label="床位号" align="center" />
+        <el-table-column prop="name" label="姓名" align="center" />
+        <el-table-column prop="sexName" label="性别" align="center" />
+        <el-table-column prop="phone" label="手机号码" align="center" />
+        <el-table-column prop="outDate" label="外出时间" align="center" />
+        <el-table-column prop="leaveDays" label="离院天数" align="center" />
+        <el-table-column prop="stopFeeDays" label="停费天数" align="center" />
+        <el-table-column prop="actualReturnDate" label="实际回来时间" align="center" />
+        <el-table-column prop="statusName" label="审核状态" align="center" />
+        <el-table-column prop="reason" label="外出事由" align="center" />
+        <el-table-column prop="remark" label="备注" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -54,7 +54,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { Page } from '@/components/table/type'
-import { getData, del } from '@/api/table'
+import { getData, del } from '@/api/out/outRegistration'
 // import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 import {useRouter, useRoute } from 'vue-router'

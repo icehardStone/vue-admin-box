@@ -3,6 +3,7 @@
     <div class="layout-container-form flex space-between">
       <div class="layout-container-form-handle">
         <el-button type="primary" :icon="Plus" @click="handleAdd">新增入住</el-button>
+        <el-button type="primary" :icon="Plus" @click="contactAdd">费用确认</el-button>
         <el-popconfirm :title="$t('message.common.delTip')" @confirm="handleDel(chooseData)">
           <template #reference>
             <el-button type="danger" :icon="Delete" :disabled="chooseData.length === 0">作废</el-button>
@@ -10,38 +11,45 @@
         </el-popconfirm>
       </div>
       <div class="layout-container-form-search flex center">
-        <el-input v-model="query.input" :placeholder="$t('message.common.searchTip')" @change="getTableData(true)"></el-input>
-        <el-icon class="layout-container-form-icon"><RefreshLeft /></el-icon>
-        <el-icon class="layout-container-form-icon"><Tools /></el-icon>
-        <el-icon class="layout-container-form-icon"><Download /></el-icon>
+        <el-input v-model="query.input" :placeholder="$t('message.common.searchTip')"
+          @change="getTableData(true)"></el-input>
+        <el-icon class="layout-container-form-icon">
+          <RefreshLeft />
+        </el-icon>
+        <el-icon class="layout-container-form-icon">
+          <Tools />
+        </el-icon>
+        <el-icon class="layout-container-form-icon">
+          <Download />
+        </el-icon>
       </div>
     </div>
     <div class="layout-container-table">
-      <Table
-        ref="table"
-        v-model:page="page"
-        v-loading="loading"
-        :showIndex="true"
-        :showSelection="true"
-        :data="tableData"
-        @getTableData="getTableData"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column prop="name" label="档案号" align="center" />
+      <Table ref="table" v-model:page="page" v-loading="loading" :showIndex="true" :showSelection="true"
+        :data="tableData" border @getTableData="getTableData" @selection-change="handleSelectionChange">
+        <el-table-column prop="cardNo" label="住院号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="状态" align="center" />
-        <el-table-column prop="radioName" label="标签" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="户口地址" align="center" />
-        <el-table-column prop="radioName" label="照护等级" align="center" />
-        <el-table-column prop="radioName" label="第三方评估" align="center" />
-        <el-table-column prop="radioName" label="监护人" align="center" />
-        <el-table-column prop="radioName" label="监护人电话" align="center" />
-        <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
+        <el-table-column prop="bedNo" label="床位号" align="center" />
+        <el-table-column prop="statusName" label="状态" align="center" />
+        <el-table-column prop="phone" label="手机号" align="center" />
+        <el-table-column prop="residentialAddress" label="户口地址" align="center" />
+        <el-table-column prop="careLevel" label="照护等级" align="center" />
+        <el-table-column prop="guardianer" label="监护人" align="center" />
+        <el-table-column prop="guardianerPhone" label="监护人电话" align="center" />
+        <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="150">
           <template #default="scope">
-            <el-button @click="handleEdit(scope.row)">查看</el-button>
-            <el-button type="warning" @click="handleEdit(scope.row)">{{ $t('message.common.update') }}</el-button>
+            <el-dropdown split-button type="primary" >
+              查看
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>编辑</el-dropdown-item>
+                  <el-dropdown-item>签订合同</el-dropdown-item>
+                  <el-dropdown-item>退住</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <!-- <el-button @click="handleEdit(scope.row)">查看</el-button> -->
+            <!-- <el-button type="warning" @click="handleEdit(scope.row)">{{ $t('message.common.update') }}</el-button> -->
           </template>
         </el-table-column>
       </Table>
@@ -53,12 +61,12 @@
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { Page } from '@/components/table/type'
-import { getData, del } from '@/api/table'
+import { getData, del } from '@/api/checkIn/checkIn'
 // import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
-import {useRouter, useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import type { LayerInterface } from '@/components/layer/index.vue'
-import { Plus, Search, Delete, RefreshLeft,Tools,Download } from '@element-plus/icons'
+import { Plus, Search, Delete, RefreshLeft, Tools, Download,ArrowDown  } from '@element-plus/icons'
 export default defineComponent({
   name: 'crudTable',
   components: {
@@ -66,6 +74,7 @@ export default defineComponent({
     RefreshLeft,
     Tools,
     Download,
+    ArrowDown 
     // Layer
   },
   setup() {
@@ -100,48 +109,55 @@ export default defineComponent({
         ...query
       }
       getData(params)
-      .then(res => {
-        let data = res.data.list
-        if (Array.isArray(data)) {
-          data.forEach(d => {
-            // const select = selectData.find(select => select.value === d.choose)
-            // select ? d.chooseName = select.label : d.chooseName = d.choose
-            // const radio = radioData.find(select => select.value === d.radio)
-            // radio ? d.radioName = radio.label : d.radio
-          })
-        }
-        tableData.value = res.data.list
-        page.total = Number(res.data.pager.total)
-      })
-      .catch(error => {
-        tableData.value = []
-        page.index = 1
-        page.total = 0
-      })
-      .finally(() => {
-        loading.value = false
-      })
+        .then(res => {
+          let data = res.data.list
+          if (Array.isArray(data)) {
+            data.forEach(d => {
+              // const select = selectData.find(select => select.value === d.choose)
+              // select ? d.chooseName = select.label : d.chooseName = d.choose
+              // const radio = radioData.find(select => select.value === d.radio)
+              // radio ? d.radioName = radio.label : d.radio
+            })
+          }
+          tableData.value = res.data.list
+          page.total = Number(res.data.pager.total)
+        })
+        .catch(error => {
+          tableData.value = []
+          page.index = 1
+          page.total = 0
+        })
+        .finally(() => {
+          loading.value = false
+        })
     }
     // 删除功能
     const handleDel = (data: object[]) => {
       let params = {
-        ids: data.map((e:any)=> {
+        ids: data.map((e: any) => {
           return e.id
         }).join(',')
       }
       del(params)
-      .then(res => {
-        ElMessage({
-          type: 'success',
-          message: '删除成功'
+        .then(res => {
+          ElMessage({
+            type: 'success',
+            message: '删除成功'
+          })
+          getTableData(tableData.value.length === 1 ? true : false)
         })
-        getTableData(tableData.value.length === 1 ? true : false)
-      })
     }
     // 新增弹窗功能
     const handleAdd = () => {
       router.push({
         name: 'checkInAdd'
+      })
+    }
+
+    // 新增弹窗功能
+    const contactAdd = () => {
+      router.push({
+        name: 'contractAdd'
       })
     }
     // 编辑弹窗功能
@@ -162,6 +178,7 @@ export default defineComponent({
       page,
       handleSelectionChange,
       handleAdd,
+      contactAdd,
       handleEdit,
       handleDel,
       getTableData
@@ -171,12 +188,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.layout-container-form-icon{
+.layout-container-form-icon {
   font-size: 20px;
   margin-left: 10px;
 
   &:hover {
     cursor: pointer;
   }
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
 }
 </style>

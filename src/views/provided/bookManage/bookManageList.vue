@@ -28,13 +28,13 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="性别" align="center" />
-        <el-table-column prop="radioName" label="年龄" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="户口所在地" align="center" />
-        <el-table-column prop="radioName" label="预约状态" align="center" />
-        <el-table-column prop="radioName" label="预约日期" align="center" />
-        <el-table-column prop="radioName" label="备注" align="center" />
+        <el-table-column prop="sexName" label="性别" align="center" />
+        <el-table-column prop="age" label="年龄" align="center" />
+        <el-table-column prop="phoneNumber" label="手机号" align="center" />
+        <el-table-column prop="household" label="户口所在地" align="center" />
+        <el-table-column prop="statusName" label="预约状态" align="center" />
+        <el-table-column prop="bookDate" label="预约日期" align="center" />
+        <el-table-column prop="remark" label="备注" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -50,7 +50,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { Page } from '@/components/table/type'
-import { getData, del } from '@/api/table'
+import { getData, del } from '@/api/olderly/bookManage'
 // import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 import {useRouter, useRoute } from 'vue-router'

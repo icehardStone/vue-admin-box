@@ -236,19 +236,7 @@ export default [
                   "hideMenu": true,
                   "component": "old_bookManageAdd",
                   "meta": { title: '新增', "classfy": "check-in-out" }
-                },
-                {
-                  "path": 'contract',
-                  "component": "old_contract",
-                  "meta": { "title": '合同管理', "classfy": "check-in-out" }
-                },
-                {
-                  "path": 'contractAdd',
-                  "name": 'contractAdd',
-                  "component": "old_contractAdd",
-                  "hideMenu": true,
-                  "meta": { title: '新增合同', "classfy": "check-in-out" }
-                },
+                }
               ]
             },
             {
@@ -271,7 +259,7 @@ export default [
                 {
                   "path": 'list',
                   "component": "checkIn_list",
-                  "meta": { "title": '入住管理', "icon": 'sfont system-chart', "classfy": "check-in-out" },
+                  "meta": { "title": '入住记录', "classfy": "check-in-out" },
                 },
                 {
                   "path": 'checkInAdd',
@@ -280,18 +268,18 @@ export default [
                   "hideMenu": true,
                   "meta": { title: '新增入住', "classfy": "check-in-out" }
                 },
-              ]
-            },
-            {
-              "path": '/checkOut',
-              "redirect": '/checkOut/list',
-              "meta": { "title": '退住', "icon": 'sfont system-chart', "classfy": "check-in-out" },
-              "children": [
                 {
-                  "path": '/checkOut/list',
-                  "component": "checkOut_list",
-                  "meta": { "title": '退住管理', "icon": 'sfont system-chart', "classfy": "check-in-out" },
-                }
+                  "path": 'contract',
+                  "component": "old_contract",
+                  "meta": { "title": '合同管理', "classfy": "check-in-out" }
+                },
+                {
+                  "path": 'contractAdd',
+                  "name": 'contractAdd',
+                  "component": "old_contractAdd",
+                  "hideMenu": true,
+                  "meta": { title: '新增合同', "classfy": "check-in-out" }
+                },
               ]
             },
             {

@@ -27,15 +27,15 @@
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="name" label="档案号" align="center" />
+        <el-table-column prop="inNo" label="档案号" align="center" />
         <el-table-column prop="name" label="姓名" align="center" />
-        <el-table-column prop="radioName" label="床位号" align="center" />
-        <el-table-column prop="radioName" label="手机号" align="center" />
-        <el-table-column prop="radioName" label="合同类型" align="center" />
-        <el-table-column prop="radioName" label="入院日期" align="center" />
-        <el-table-column prop="radioName" label="计费周期" align="center" />
-        <el-table-column prop="radioName" label="签约类型" align="center" />
-        <el-table-column prop="radioName" label="状态" align="center" />
+        <el-table-column prop="bedNo" label="床位号" align="center" />
+        <el-table-column prop="bedNo" label="手机号" align="center" />
+        <el-table-column prop="contactType" label="合同类型" align="center" />
+        <el-table-column prop="inDate" label="入院日期" align="center" />
+        <el-table-column prop="caculatePeriod" label="计费周期" align="center" />
+        <el-table-column prop="type" label="签约类型" align="center" />
+        <el-table-column prop="statusName" label="状态" align="center" />
         <el-table-column :label="$t('message.common.handle')" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">查看</el-button>
@@ -51,7 +51,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { Page } from '@/components/table/type'
-import { getData, del } from '@/api/table'
+import { getData, del } from '@/api/checkIn/contact'
 // import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 import {useRouter, useRoute } from 'vue-router'

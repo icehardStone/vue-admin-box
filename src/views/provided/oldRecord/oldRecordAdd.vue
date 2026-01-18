@@ -135,35 +135,6 @@
                         <el-form-item label="禁忌药品">
                             <el-input v-model="form.user" placeholder="禁忌药品" clearable />
                         </el-form-item>
-                        <el-form-item label="饮食方式">
-                            <el-checkbox-group v-model="form.type">
-                                <el-checkbox value="Online activities" name="type">
-                                    普通饮食
-                                </el-checkbox>
-                                <el-checkbox value="Promotion activities" name="type">
-                                    半流质饮食
-                                </el-checkbox>
-                                <el-checkbox value="Offline activities" name="type">
-                                    流质饮食
-                                </el-checkbox>
-                                <el-checkbox value="Simple brand exposure" name="type">
-                                    低糖饮食
-                                </el-checkbox>
-                                <el-checkbox value="Simple brand exposure" name="type">
-                                    低嘌呤饮食
-                                </el-checkbox>
-                                <el-checkbox value="Simple brand exposure" name="type">
-                                    低脂饮食
-                                </el-checkbox>
-                                <el-checkbox value="Simple brand exposure" name="type">
-                                    碎食
-                                </el-checkbox>
-                                <el-checkbox value="Simple brand exposure" name="type">
-                                    忌食类
-                                </el-checkbox>
-
-                            </el-checkbox-group>
-                        </el-form-item>
                         <el-form-item label="职业" style="width: 20rem;">
                             <el-input v-model="form.user" placeholder="职业" clearable />
                         </el-form-item>

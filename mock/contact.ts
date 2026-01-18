@@ -1,32 +1,38 @@
 import { MockMethod } from 'vite-plugin-mock'
-const labels = ['颤三','性别','婚姻状况']
+const roles = ['系统管理员', '平台管理员', '数据统计人员', '信息录入人员', '普通人员']
 export default [
   {
-    url: `/mock/olderly/list`,
+    url: `/mock/contact/list`,
     method: 'post',
     response: ({ body }) => {
       const { page, pageSize } = body
       return {
         code: 200,
         data: {
-           [`list|${pageSize}`]: [
+          [`list|${pageSize}`]: [
             {
-              'id|+1': 0,
-              'sexName|1':['男','女'],
-              'recordNo|+1': 10089,
-              'recordNo|1':[25012312,250121312] ,
-              'age|+1': 45,
-              'phoneNumber':'@phoneNo',
-              'guardianer': '张三',
-              'guardianPhone': '17356897526',
-              'idNumber|1':['610921195304308475','370983199402124319'] ,
-              'name': '@cname',
+              'inNo|+1':1008,
+              'name':'@cname',
+              'bedNo|+1': 1089,
+              'contactType|1': [
+                '试住','入住'
+              ],
+              'inDate': '@date',
+              'caculatePeriod': '2015~10263',
+              'type|1': [
+                "TBS01"
+              ],
+              'statusName|1':[
+                '已签约',
+                '已保存',
+                '已取消'
+              ]
             }
           ],
           pager: {
             page: page,
             pageSize: pageSize,
-            total: 198
+            total: 200
           }
         },
         msg: ''
@@ -34,7 +40,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/add`,
+    url: `/mock/contact/add`,
     method: 'post',
     response: ({ body }) => {
       return {
@@ -45,7 +51,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/update`,
+    url: `/mock/contact/update`,
     method: 'post',
     response: ({ body }) => {
       return {
@@ -56,7 +62,7 @@ export default [
     }
   },
   {
-    url: `/mock/olderly/del`,
+    url: `/mock/contact/del`,
     method: 'post',
     response: ({ body }) => {
       return {

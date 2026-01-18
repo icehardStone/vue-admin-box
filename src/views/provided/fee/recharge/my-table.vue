@@ -6,6 +6,7 @@
       </div>
       <div class="layout-container-form-search">
         <el-button type="primary" class="search-btn" ">删除</el-button>
+        <el-button type="primary" class="search-btn" ">新增</el-button>
         <el-button type=" primary" class="search-btn" ">结算</el-button>
       </div>
     </div>
