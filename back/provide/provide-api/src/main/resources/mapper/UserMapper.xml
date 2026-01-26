@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gomains.soriys.provide.api.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.User" >
+        <result column="userid" property="userid" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="accountNonExpired" property="accountNonExpired" />
+        <result column="accountNonLocked" property="accountNonLocked" />
+        <result column="credentialsNonExpired" property="credentialsNonExpired" />
+        <result column="enabled" property="enabled" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userid,
+                username,
+                "password",
+        accountNonExpired,
+        accountNonLocked,
+        credentialsNonExpired,
+        "enabled"
+    </sql>
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="cn.gomains.soriys.provide.api.entity.User">
+        INSERT INTO sys."user"
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != userid and '' != userid">
+                userid,
+            </if>
+            <if test="null != username and '' != username">
+                username,
+            </if>
+            <if test="null != password and '' != password">
+                password,
+            </if>
+            <if test="null != accountNonExpired and '' != accountNonExpired">
+                accountnonexpired,
+            </if>
+            <if test="null != accountNonLocked and '' != accountNonLocked">
+                accountnonlocked,
+            </if>
+            <if test="null != credentialsNonExpired and '' != credentialsNonExpired">
+                credentialsnonexpired,
+            </if>
+            <if test="null != enabled and '' != enabled">
+                enabled
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != userid and '' != userid">
+                #{userid},
+            </if>
+            <if test="null != username and '' != username">
+                #{username},
+            </if>
+            <if test="null != password and '' != password">
+                #{password},
+            </if>
+            <if test="null != accountNonExpired and '' != accountNonExpired">
+                #{accountnonexpired},
+            </if>
+            <if test="null != accountNonLocked and '' != accountNonLocked">
+                #{accountnonlocked},
+            </if>
+            <if test="null != credentialsNonExpired and '' != credentialsNonExpired">
+                #{credentialsnonexpired},
+            </if>
+            <if test="null != enabled and '' != enabled">
+                #{enabled}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM sys.user
+        WHERE userid = #{userid}
+    </delete>
+
+    <update id="update" parameterType="cn.gomains.soriys.provide.api.entity.User">
+        UPDATE sys.user
+        <set>
+            <if test="null != userid and '' != userid">userid = #{userid},</if>
+            <if test="null != username and '' != username">username = #{username},</if>
+            <if test="null != password and '' != password">password = #{password},</if>
+            <if test="null != accountNonExpired and '' != accountNonExpired">accountnonexpired = #{accountnonexpired},</if>
+            <if test="null != accountNonLocked and '' != accountNonLocked">accountnonlocked = #{accountnonlocked},</if>
+            <if test="null != credentialsNonExpired and '' != credentialsNonExpired">credentialsnonexpired = #{credentialsnonexpired},</if>
+            <if test="null != enabled and '' != enabled">enabled = #{enabled}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="get" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.user
+        WHERE userid = #{id}
+    </select>
+
+    <select id="selectUserByUsername" resultType="cn.gomains.soriys.provide.api.entity.LoginUser">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.user
+        WHERE username = #{username}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.user
+        LIMIT #{pageSize} OFFSET ((#{page}-1) * #{pageSize})
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM sys.user
+    </select>
+
+</mapper>
