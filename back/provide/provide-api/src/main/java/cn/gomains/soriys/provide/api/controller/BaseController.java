@@ -3,10 +3,7 @@ package cn.gomains.soriys.provide.api.controller;
 import cn.gomains.soriys.provide.api.entity.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
-
-import java.security.Principal;
 
 /**
  * @author huguanghua

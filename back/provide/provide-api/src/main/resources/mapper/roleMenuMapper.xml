@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gomains.soriys.provide.api.dao.RoleMenuMapper">
+
+    <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.RoleMenu" >
+        <result column="roleId" property="roleId" />
+        <result column="menuId" property="menuId" />
+        <result column="createBy" property="createBy" />
+        <result column="createDate" property="createDate" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        roleId,
+                menuId,
+                createBy,
+                createDate
+    </sql>
+
+    <insert id="insert"
+            parameterType="cn.gomains.soriys.provide.api.entity.RoleMenu">
+        INSERT INTO sys.rolemenu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != roleId ">
+                roleId,
+            </if>
+            <if test="null != menuId ">
+                menuId,
+            </if>
+            <if test="null != createBy and '' != createBy">
+                createBy,
+            </if>
+            <if test="null != createDate ">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != roleId ">
+                #{roleId},
+            </if>
+            <if test="null != menuId ">
+                #{menuId},
+            </if>
+            <if test="null != createBy and '' != createBy">
+                #{createBy},
+            </if>
+            <if test="null != createDate ">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM sys.rolemenu
+        WHERE
+        <if test="null != roleId ">roleId = #{roleId},</if>
+        <if test="null != menuId ">menuId = #{menuId},</if>
+    </delete>
+
+    <update id="update" parameterType="www.bejson.com.entity.Rolemenu">
+        UPDATE rolemenu
+        <set>
+            <if test="null != roleId ">roleId = #{roleId},</if>
+            <if test="null != menuId ">menuId = #{menuId},</if>
+            <if test="null != createBy and '' != createBy">createBy = #{createBy},</if>
+            <if test="null != createdate ">createDate = #{createDate}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.rolemenu
+        <if test="null != roleId ">roleId = #{roleId},</if>
+        <if test="null != menuId ">menuId = #{menuId},</if>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gomains.soriys.provide.api.dao.UserRoleMapper">
+
+    <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.UserRole" >
+        <result column="roleId" property="roleId" />
+        <result column="userId" property="userId" />
+        <result column="createBy" property="createBy" />
+        <result column="createDate" property="createDate" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        roleId,
+                userId,
+                createBy,
+                createDate
+    </sql>
+
+    <insert id="insert"
+             parameterType="cn.gomains.soriys.provide.api.entity.UserRole">
+        INSERT INTO user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != roleId ">
+                roleId,
+            </if>
+            <if test="null != userId ">
+                userId,
+            </if>
+            <if test="null != createBy and '' != createBy">
+                createBy,
+            </if>
+            <if test="null != createDate ">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != roleId ">
+                #{roleId},
+            </if>
+            <if test="null != userId ">
+                #{userId},
+            </if>
+            <if test="null != createBy and '' != createBy">
+                #{createBy},
+            </if>
+            <if test="null != createDate ">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM user_role
+        where
+        <if test="null != roleId ">
+            roleId = #{roleId},
+        </if>
+        <if test="null != userId ">
+            userId = #{userId},
+        </if>
+    </delete>
+
+    <update id="update" parameterType="cn.gomains.soriys.provide.api.entity.UserRole">
+        UPDATE user_role
+        <set>
+            <if test="null != roleId ">roleId = #{roleId},</if>
+            <if test="null != userId ">userId = #{userId},</if>
+            <if test="null != createBy and '' != createBy">createBy = #{createBy},</if>
+            <if test="null != createDate ">createDate = #{createDate}</if>
+        </set>
+        <where>
+            <if test="null != roleId ">roleId = #{roleId},</if>
+        </where>
+    </update>
+
+
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.user_role
+    </select>
+
+</mapper>

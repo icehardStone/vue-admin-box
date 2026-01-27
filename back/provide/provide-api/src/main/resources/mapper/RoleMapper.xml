@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gomains.soriys.provide.api.dao.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.Role" >
+        <result column="roleName" property="roleName" />
+        <result column="roleId" property="roleId" />
+        <result column="createBy" property="createBy" />
+        <result column="createDate" property="createDate" />
+        <result column="isDeleted" property="isDeleted" />
+        <result column="roleCode" property="roleCode" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        roleName,
+                roleId,
+                createBy,
+                createDate,
+                isDeleted,
+                roleCode
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true"
+            keyColumn="roleId"
+            keyProperty="roleId"
+            parameterType="cn.gomains.soriys.provide.api.entity.Role">
+        INSERT INTO role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != roleName and '' != roleName">
+                roleName,
+            </if>
+            <if test="null != roleId and '' != roleId">
+                roleId,
+            </if>
+            <if test="null != createBy and '' != createBy">
+                createBy,
+            </if>
+            <if test="null != createDate ">
+                createDate,
+            </if>
+            <if test="null != isDeleted ">
+                isDeleted,
+            </if>
+            <if test="null != roleCode and '' != roleCode">
+                roleCode
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != roleName and '' != roleName">
+                #{roleName},
+            </if>
+            <if test="null != roleId and '' != roleId">
+                #{roleId},
+            </if>
+            <if test="null != createBy and '' != createBy">
+                #{createBy},
+            </if>
+            <if test="null != createDate ">
+                #{createDate},
+            </if>
+            <if test="null != isDeleted ">
+                #{isDeleted},
+            </if>
+            <if test="null != roleCode and '' != roleCode">
+                #{roleCode}
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" >
+        DELETE FROM sys.role
+        WHERE roleId = #{roleId}
+    </delete>
+
+    <update id="update" parameterType="cn.gomains.soriys.provide.api.entity.Role">
+        UPDATE role
+        <set>
+            <if test="null != roleName and '' != roleName">roleName = #{roleName},</if>
+            <if test="null != roleId and '' != roleId">roleId = #{roleId},</if>
+            <if test="null != createBy and '' != createBy">createBy = #{createBy},</if>
+            <if test="null != createDate ">createDate = #{createDate},</if>
+            <if test="null != isDeleted ">isDeleted = #{isDeleted},</if>
+            <if test="null != roleCode and '' != roleCode">roleCode = #{roleCode}</if>
+        </set>
+        WHERE roleId = #{roleId}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.role
+        WHERE roleId = #{roleId}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys.role
+        LIMIT #{pageSize} OFFSET ((#{page}-1) * #{pageSize})
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM sys.role
+    </select>
+
+</mapper>

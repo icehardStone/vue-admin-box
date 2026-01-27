@@ -19,17 +19,17 @@ public class SwaggerConfig {
                         .title("Your API Documentation")
                         .version("v1.0")
                         .description("This is the API documentation for your project"))
-                // 🔑 全局安全要求
-                .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
-                // 🔑 定义安全方案
-                .components(new Components()
-                        .addSecuritySchemes(SECURITY_SCHEME_NAME,
-                                new SecurityScheme()
-                                        .name("Authorization")
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .scheme("bearer")
-                                        .bearerFormat("JWT")
-                        )
-                );
+                        // 🔑 全局安全要求
+                        .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
+                        // 🔑 定义安全方案
+                        .components(new Components()
+                                .addSecuritySchemes(SECURITY_SCHEME_NAME,
+                                        new SecurityScheme()
+                                                .name("Authorization")
+                                                .type(SecurityScheme.Type.HTTP)
+                                                .scheme("bearer")
+                                                .bearerFormat("JWT")
+                                )
+                        );
     }
 }

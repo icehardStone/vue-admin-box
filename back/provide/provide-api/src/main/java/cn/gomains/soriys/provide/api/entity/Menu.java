@@ -3,6 +3,7 @@ package cn.gomains.soriys.provide.api.entity;
 import cn.gomains.soriys.provide.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@NoArgsConstructor
 public class Menu extends BaseEntity implements Serializable {
 
     /**
@@ -82,9 +84,4 @@ public class Menu extends BaseEntity implements Serializable {
      * type
      */
     private Integer type;
-
-
-    public Menu() {
-    }
-
 }

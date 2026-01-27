@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +21,7 @@ import java.util.Set;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 public class User extends BaseEntity implements  Serializable {
 
     @Serial
@@ -59,6 +61,4 @@ public class User extends BaseEntity implements  Serializable {
      * enabled
      */
     private  boolean enabled;
-
-    public User() {}
 }
