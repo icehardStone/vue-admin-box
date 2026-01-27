@@ -14,7 +14,7 @@ import java.util.Map;
  * @date 2026-01-27
  */
 @RestController
-@RequestMapping(value = "/role")
+@RequestMapping(value = "/sys/role")
 public class RoleController extends BaseController {
 
     @Resource

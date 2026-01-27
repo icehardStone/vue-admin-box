@@ -57,7 +57,7 @@
         <if test="null != menuId ">menuId = #{menuId},</if>
     </delete>
 
-    <update id="update" parameterType="www.bejson.com.entity.Rolemenu">
+    <update id="update" parameterType="cn.gomains.soriys.provide.api.entity.RoleMenu">
         UPDATE rolemenu
         <set>
             <if test="null != roleId ">roleId = #{roleId},</if>

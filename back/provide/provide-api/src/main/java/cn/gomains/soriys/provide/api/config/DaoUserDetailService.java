@@ -2,7 +2,6 @@ package cn.gomains.soriys.provide.api.config;
 
 import cn.gomains.soriys.provide.api.dao.UserMapper;
 import cn.gomains.soriys.provide.api.entity.LoginUser;
-import cn.gomains.soriys.provide.api.entity.User;
 import jakarta.annotation.Resource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
