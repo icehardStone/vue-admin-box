@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @description 用户角色关联表
- * @author BEJSON.com
+ * @author cn.gomains.provide
  * @date 2026-01-27
  */
 @Mapper
@@ -17,21 +17,21 @@ public interface UserRoleMapper {
 
     /**
      * 新增
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     int insert(UserRole userRole);
 
     /**
      * 刪除
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     int delete(int id);
 
     /**
      * 更新
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     int update(UserRole userRole);
@@ -39,7 +39,7 @@ public interface UserRoleMapper {
 
     /**
      * 查询 分页查询
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     List<UserRole> pageList(UserRole userRole);

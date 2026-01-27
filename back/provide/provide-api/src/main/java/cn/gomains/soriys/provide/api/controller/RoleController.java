@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * @description 角色
- * @author BEJSON.com
+ * @author cn.gomains.provide
  * @date 2026-01-27
  */
 @RestController
@@ -22,7 +22,7 @@ public class RoleController extends BaseController {
 
     /**
      * 新增
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     @PostMapping("/insert")
@@ -32,7 +32,7 @@ public class RoleController extends BaseController {
 
     /**
      * 刪除
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     @DeleteMapping("/delete")
@@ -42,7 +42,7 @@ public class RoleController extends BaseController {
 
     /**
      * 更新
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     @PutMapping("/update")
@@ -52,7 +52,7 @@ public class RoleController extends BaseController {
 
     /**
      * 查询 根据主键 id 查询
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     @GetMapping("/{roleId}")
@@ -62,7 +62,7 @@ public class RoleController extends BaseController {
 
     /**
      * 查询 分页查询
-     * @author BEJSON.com
+     * @author cn.gomains.provide
      * @date 2026/01/27
      **/
     @GetMapping("/pageList")
