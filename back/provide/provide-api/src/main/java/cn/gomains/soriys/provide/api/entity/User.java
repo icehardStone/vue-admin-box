@@ -37,6 +37,11 @@ public class User extends BaseEntity implements  Serializable {
     private String username;
 
     /**
+     * realName
+     */
+    private String realName;
+
+    /**
      * password
      */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)  // 只写

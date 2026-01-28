@@ -3,13 +3,13 @@
         <el-card style="min-width: 320px" body-style="padding: 0px;">
             <div class="card-header">
                 <div class="card-header-title">
-                    <div>梦三</div>
+                    <div>{{userinfo.realName}}</div>
                     <el-tag type="success" effect="light" round>
                         角色
                     </el-tag>
                 </div>
                 <div class="card-header-login">
-                    <el-text class="mx-1">登录账号：mengsan</el-text>
+                    <el-text class="mx-1">登录账号：{{userinfo.username}}</el-text>
                 </div>
             </div>
             <el-divider class="m-0" />
@@ -39,7 +39,7 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const isCollapse = computed(() => store.state.app.isCollapse)
-
+    const userinfo = computed(() => store.state.user.info)
     // login out the system
     const loginOut = () => {
       store.dispatch('user/loginOut')
@@ -48,6 +48,7 @@ export default defineComponent({
     return {
       isCollapse,
       loginOut,
+      userinfo,
     }
   }
 })

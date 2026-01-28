@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.User" >
         <result column="userid" property="userid" />
         <result column="username" property="username" />
+        <result column="realName" property="realName" />
         <result column="password" property="password" />
         <result column="accountNonExpired" property="accountNonExpired" />
         <result column="accountNonLocked" property="accountNonLocked" />
@@ -16,6 +17,7 @@
     <sql id="Base_Column_List">
         userid,
                 username,
+                realName,
                 "password",
         accountNonExpired,
         accountNonLocked,
@@ -31,6 +33,9 @@
             </if>
             <if test="null != username and '' != username">
                 username,
+            </if>
+            <if test="null != realName and '' != realName">
+                realName,
             </if>
             <if test="null != password and '' != password">
                 password,
@@ -54,6 +59,9 @@
             </if>
             <if test="null != username and '' != username">
                 #{username},
+            </if>
+            <if test="null != realName and '' != realName">
+                #{realName},
             </if>
             <if test="null != password and '' != password">
                 #{password},
@@ -83,6 +91,7 @@
         <set>
             <if test="null != userid and '' != userid">userid = #{userid},</if>
             <if test="null != username and '' != username">username = #{username},</if>
+            <if test="null != realName and '' != realName">realName = #{realName},</if>
             <if test="null != password and '' != password">password = #{password},</if>
             <if test="null != accountNonExpired and '' != accountNonExpired">accountnonexpired = #{accountnonexpired},</if>
             <if test="null != accountNonLocked and '' != accountNonLocked">accountnonlocked = #{accountnonlocked},</if>

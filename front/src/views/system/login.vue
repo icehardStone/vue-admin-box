@@ -105,7 +105,7 @@ export default defineComponent({
       .then(() => {
         form.loading = true
         let params = {
-          name: form.name,
+          username: form.name,
           password: form.password
         }
         store.dispatch('user/login', params)
@@ -119,6 +119,14 @@ export default defineComponent({
           location.reload()
           // await getAuthRoutes()
           // await router.push(route.query.redirect as RouteLocationRaw || '/')
+        })
+        .catch(err => {
+          ElMessage.error({
+            message: '登录失败',
+            type: 'error',
+            showClose: true,
+            duration: 1000
+          })
         }).finally(() => {
           form.loading = false
         })

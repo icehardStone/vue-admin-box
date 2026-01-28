@@ -46,7 +46,7 @@
       <!-- 用户信息 -->
       <div class="user-info">
         <div class="user-info-name">
-          梦三
+          {{userinfo.realName}}
         </div>
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         <Userdetail class="user-info-detail"></Userdetail>
@@ -107,6 +107,7 @@ export default defineComponent({
       showButton: true
     })
     const isCollapse = computed(() => store.state.app.isCollapse)
+    const userinfo = computed(() => store.state.user.info)
     // isCollapse change to hide/show the sidebar
     const opendStateChange = () => {
       store.commit('app/isCollapseChange', !isCollapse.value)
@@ -137,6 +138,7 @@ export default defineComponent({
     }
     return {
       isCollapse,
+      userinfo,
       layer,
       opendStateChange,
       loginOut,

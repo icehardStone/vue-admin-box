@@ -37,7 +37,7 @@ public class TokenController {
     }
 
     @PostMapping("/authorize")
-    public Map<String, Object> authorize(@RequestBody LoginRequest request) {
+    public ResultData<Map<String, Object>> authorize(@RequestBody LoginRequest request) {
 
         // 会调用 cn.gomains.soriys.provide.api.config.DaoUserDetailService中的loadUserByUsername 方法
         Authentication authentication = authenticationManager.authenticate(
@@ -69,6 +69,6 @@ public class TokenController {
                 JwtEncoderParameters.from(claims)
         ).getTokenValue();
 
-        return Map.of("token", token,"userinfo", user);
+        return ResultData.to(Map.of("token", token,"userinfo", user));
     }
 }

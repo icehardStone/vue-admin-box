@@ -12,17 +12,42 @@ import java.util.Set;
 @Data
 public class LoginUser implements UserDetails {
 
+    /**
+     * userid
+     */
     private Integer userid;
+    /**
+     * username
+     */
     private String username;
-
+    /**
+     * realName
+     */
+    private String realName;
+    /**
+     * password
+     */
     @JsonIgnore
     private String password;
-
+    /**
+     * accountNonExpired
+     */
     private  boolean accountNonExpired;
+    /**
+     * accountNonLocked
+     */
     private  boolean accountNonLocked;
+    /**
+     * credentialsNonExpired
+     */
     private  boolean credentialsNonExpired;
+    /**
+     * enabled
+     */
     private  boolean enabled;
-
+    /**
+     * authorities
+     */
     private Set<GrantedAuthority> authorities;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
