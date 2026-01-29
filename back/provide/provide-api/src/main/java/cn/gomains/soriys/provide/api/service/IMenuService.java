@@ -37,5 +37,9 @@ public interface IMenuService
      * 分页查询
      */
     public Map<String,Object> pageList(Menu menu);
+    /**
+     * 用户菜单列表
+     */
+    public Map<String,Object> userList(Menu menu);
 
 }

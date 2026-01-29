@@ -4,6 +4,7 @@
 <mapper namespace="cn.gomains.soriys.provide.api.dao.MenuMapper">
 
     <resultMap id="BaseResultMap" type="cn.gomains.soriys.provide.api.entity.Menu" >
+        <result column="menuId" property="menuId" />
         <result column="parentId" property="parentId" />
         <result column="name" property="name" />
         <result column="component" property="component" />
@@ -19,6 +20,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
+        menuId,
         parentid,
                 name,
                 component,
@@ -38,6 +40,9 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="null != parentId ">
                 parentid,
+            </if>
+            <if test="null != menuId ">
+                menuId,
             </if>
             <if test="null != name and '' != name">
                 name,
@@ -74,6 +79,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != menuId ">
+                #{menuId},
+            </if>
             <if test="null != parentId ">
                 #{parentid},
             </if>
@@ -122,6 +130,7 @@
         UPDATE sys.menu
         <set>
             <if test="null != parentId ">parentid = #{parentId},</if>
+            <if test="null != menuId ">parentid = #{menuId},</if>
             <if test="null != name and '' != name">name = #{name},</if>
             <if test="null != component and '' != component">component = #{component},</if>
             <if test="null != path and '' != path">path = #{path},</if>

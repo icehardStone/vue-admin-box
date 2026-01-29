@@ -26,6 +26,10 @@ public class Menu extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * id
+     */
+    private Integer menuId;
+    /**
      * parentId
      */
     private Integer parentId;

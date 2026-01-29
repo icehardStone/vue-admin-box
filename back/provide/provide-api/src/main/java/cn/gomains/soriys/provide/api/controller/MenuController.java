@@ -72,4 +72,14 @@ public class MenuController extends BaseController {
     public ResultData<Map<String, Object>> pageList(Menu entity) {
         return ResultData.to(menuService.pageList(entity));
     }
+    /**
+     * 查询 分页查询
+     *
+     * @author huguanghua
+     * @date 2026/01/25
+     **/
+    @GetMapping("/userList")
+    public ResultData<Map<String, Object>> userList(Menu entity) {
+        return ResultData.to(menuService.userList(entity));
+    }
 }

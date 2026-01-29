@@ -20,6 +20,6 @@ class ProvideApiApplicationTests
 
     @Test
     void textEncoder() {
-      System.out.println(passwordEncoder.encode("password"));
+      System.out.println(passwordEncoder.encode("Zlk123456@sy"));
     }
 }
